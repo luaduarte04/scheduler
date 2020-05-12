@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState } from "react";
 
 import "components/Application.scss";
 
@@ -25,7 +25,6 @@ const days = [
 
 export default function Application(props) {
   const [day, setDay] = useState("Monday");
-  const [days, setDays] = useState([]);
   
   return (
     <main className="layout">
