@@ -19,3 +19,5 @@ export default function Appointment(props) {
     </article>
   );
 }
+
+// bring props action for buttons ex: onClick={props.onEdit}
