@@ -46,8 +46,25 @@ export default function Appointment(props) {
       .catch(error => transition(ERROR_SAVE, true));
   }
 
+  function edit(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer,
+    };
+
+    transition(SAVING);
+
+    props
+      .editInterview(props.id, interview)
+      .then(() => {
+        transition(SHOW);
+      })
+      .catch((error) => transition(ERROR_SAVE, true));
+  }
+
   function destroy(event) {
     transition(DELETING, true);
+
     props
      .cancelInterview(props.id)
      .then(() => transition(EMPTY))
@@ -58,6 +75,7 @@ export default function Appointment(props) {
   return (
     <article className="appointment">
       <Header time={props.time} />
+
       {mode === EMPTY && <Empty onAdd={ () => {transition(CREATE)} } />}
 
       {mode === SAVING ? <Status message="Saving" /> : null }
@@ -70,6 +88,13 @@ export default function Appointment(props) {
         />
       }
 
+      { mode === ERROR_SAVE &&
+        <Error
+          message="Could not save appointment."
+          onClose={ () => back(SHOW) }
+        />
+      }
+
       { mode === ERROR_DELETE &&
         <Error
           message="Could not cancel appointment."
@@ -77,13 +102,13 @@ export default function Appointment(props) {
         />
       }
 
-      {mode === SHOW ?
-        <Show
+      {mode === SHOW && props.interview &&
+        (<Show
         student={props.interview.student}
         interviewer={props.interview.interviewer}
         onEdit={ () => transition(EDIT) }
         onDelete={ () => {transition(CONFIRM)} }
-        /> : null
+        />)
       }
       
       {mode === EDIT &&
@@ -92,7 +117,7 @@ export default function Appointment(props) {
           interviewer={props.interview.interviewer.id}
           name={ props.interview.student }
           onCancel={ () => back(SHOW) }
-          onSave={ save }
+          onSave={ edit }
         />
       }
       
