@@ -111,3 +111,4 @@ export default function Appointment(props) {
 // update spots
 // check if all props are working (compare with storybook)
 // SAVE ERROR
+// as soon as it loads it should go for the monday no?!
