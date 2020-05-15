@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
+import useApplicationData from "hooks/useApplicationData";
+
 import "components/Application.scss";
 
-import { getAppointmentsForDay } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
 import DayList from "components/DayList";
 
@@ -41,7 +43,7 @@ export default function Application(props) {
     })
     
   }, []);
-  
+
   const appointments = getAppointmentsForDay(state, state.day);
 
   const scheduler = appointments.map(appointment => {
@@ -52,9 +54,47 @@ export default function Application(props) {
         id={ appointment.id }
         time={ appointment.time }
         interview={ interview }
+        interviewers={ getInterviewersForDay(state, state.day) }
+        bookInterview={ bookInterview }
+        cancelInterview={ cancelInterview }
       />
       );
   })
+
+  function bookInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    return axios({
+      url: `/api/appointments/${id}`,
+      method: 'PUT',
+      data: appointment
+    })
+    .then(result => {
+      setState({ ...state, appointments })
+    })
+    //.catch(err => err)
+  }
+
+  function cancelInterview(id) {
+
+    return axios({
+      url: `/api/appointments/${id}`,
+      method: 'DELETE'
+    })
+    .then(result => {
+      console.log('i got deleted');
+    })
+    //.catch(err => console.log(err))
+  }
+
 
   return (
     <main className="layout">

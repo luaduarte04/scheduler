@@ -33,11 +33,11 @@ export default function Form(props) {
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
         <form autoComplete="off" onSubmit={event => event.preventDefault()}>
-          <input //name here is not working anymore | should I change to Input and Form
+          <input 
             className="appointment__create-input text--semi-bold"
-            name="name" // this is returning an error the output is an obj
-            value={name}
-            onChange={event => setName(event.target.value)}
+            name="name" 
+            value={ name }
+            onChange={ event => setName(event.target.value) }
             type="text"
             placeholder="Enter Student Name"
             /*
@@ -49,7 +49,8 @@ export default function Form(props) {
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger onClick={cancel}>Cancel</Button>
+          {/* <Button danger onClick={cancel}>Cancel</Button> */}
+          <Button danger onClick={props.onCancel}>Cancel</Button>
           <Button confirm onClick={save}>Save</Button>
         </section>
       </section>
