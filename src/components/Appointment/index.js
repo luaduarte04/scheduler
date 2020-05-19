@@ -45,7 +45,7 @@ export default function Appointment(props) {
       })
       .catch(error => {
         console.log("error", error)
-        transition(ERROR_SAVE, true)
+        transition(ERROR_SAVE)
       });
   }
 
@@ -62,7 +62,7 @@ export default function Appointment(props) {
       .then(() => {
         transition(SHOW);
       })
-      .catch((error) => transition(ERROR_SAVE, true));
+      .catch((error) => transition(ERROR_SAVE));
   }
 
   function destroy(event) {
@@ -76,7 +76,7 @@ export default function Appointment(props) {
 
 
   return (
-    <article className="appointment">
+    <article className="appointment" data-testid="appointment">
       <Header time={props.time} />
 
       {mode === EMPTY && <Empty onAdd={ () => {transition(CREATE)} } />}

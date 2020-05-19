@@ -39,11 +39,7 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
-    return axios({
-      url: `/api/appointments/${id}`,
-      method: 'PUT',
-      data: appointment
-    })
+    return axios.put(`/api/appointments/${id}`, appointment)
     .then(result => {
       const days = updateSpots(id, "removeSpot");
       setState({ ...state, appointments, days });
@@ -61,10 +57,7 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
-    return axios({
-      url: `/api/appointments/${id}`,
-      method: 'DELETE'
-    })
+    return axios.delete(`/api/appointments/${id}`)
     .then(result => {
       const days = updateSpots(id, "addSpot");
       setState({ ...state, appointments, days })
@@ -82,11 +75,7 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
-    return axios({
-      url: `/api/appointments/${id}`,
-      method: 'PUT',
-      data: appointment
-    })
+    return axios.put(`/api/appointments/${id}`, appointment)
     .then(result => {
       setState({ ...state, appointments });
     })
