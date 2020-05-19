@@ -43,7 +43,10 @@ export default function Appointment(props) {
       .then(() => {
         transition(SHOW);
       })
-      .catch(error => transition(ERROR_SAVE, true));
+      .catch(error => {
+        console.log("error", error)
+        transition(ERROR_SAVE, true)
+      });
   }
 
   function edit(name, interviewer) {
