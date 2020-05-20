@@ -20,18 +20,12 @@ export default function Form(props) {
     props.onCancel();
   }
 
-  const save = () => {
-    if (name && interviewer) {
-      props.onSave(name, interviewer);
-      setError("");
-    } else {
-      setError("Interviewer cannot be blank");
-    }
-  }
-
   function validate() {
     if (name === "") {
       setError("Student name cannot be blank");
+      return;
+    } else if (interviewer === null) {
+      setError("Interviewer cannot be blank");
       return;
     }
   
@@ -51,10 +45,7 @@ export default function Form(props) {
             onChange={ event => setName(event.target.value) }
             type="text"
             placeholder="Enter Student Name"
-            /*
-              This must be a controlled component
-            */
-           data-testid="student-name-input"
+            data-testid="student-name-input"
           />
         </form>
         

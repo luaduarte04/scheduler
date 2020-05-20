@@ -1,4 +1,4 @@
-import React, { useState } from "react"; //, { useState, Fragment }
+import React from "react";
 
 import useVisualMode from "hooks/useVisualMode";
 
@@ -8,7 +8,6 @@ import Header from "components/Appointment/Header";
 import Empty from "components/Appointment/Empty";
 import Show from "components/Appointment/Show";
 import Confirm from "components/Appointment/Confirm";
-//import Status from "components/Appointment/Status";
 import Error from "components/Appointment/Error";
 import Form from "components/Appointment/Form";
 import Status from "./Status";
@@ -17,7 +16,6 @@ import Status from "./Status";
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CONFIRM = "CONFIRM";
-const ERROR = "ERROR";
 const CREATE = "CREATE";
 const EDIT = "EDIT";
 const SAVING = "SAVING";
@@ -134,9 +132,3 @@ export default function Appointment(props) {
     </article>
   );
 }
-
-
-// update spots
-// check if all props are working (compare with storybook)
-// SAVE ERROR
-// as soon as it loads it should go for the monday no?!

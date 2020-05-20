@@ -7,13 +7,6 @@ import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "help
 
 import DayList from "components/DayList";
 import Appointment from "components/Appointment";
-// import Header from "components/Appointment/Header";
-// import Empty from "components/Appointment/Empty";
-// import Show from "components/Appointment/Show";
-// import Confirm from "components/Appointment/Confirm";
-// import Status from "components/Appointment/Status";
-// import Error from "components/Appointment/Error";
-// import Form from "components/Appointment/Form";
 
 
 export default function Application(props) {
@@ -25,24 +18,6 @@ export default function Application(props) {
     editInterview
   } = useApplicationData();
 
-  // const appointments = getAppointmentsForDay(state, state.day);
-
-  // const scheduler = appointments.map(appointment => {
-  //   const interview = getInterview(state, appointment.interview);
-  //   return (
-  //     <Appointment 
-  //       key={ appointment.id }
-  //       id={ appointment.id }
-  //       time={ appointment.time }
-  //       interview={ interview }
-  //       interviewers={ getInterviewersForDay(state, state.day) }
-  //       bookInterview={ bookInterview }
-  //       cancelInterview={ cancelInterview }
-  //     />
-  //     );
-  // })
-
-  // new compass version
   const interviewers = getInterviewersForDay(state, state.day);
 
   const appointments = getAppointmentsForDay(state, state.day).map(

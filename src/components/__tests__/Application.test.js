@@ -12,8 +12,7 @@ import {
   getByAltText,
   getByPlaceholderText,
   queryByText,
-  queryByAltText,
-  waitFor }
+  queryByAltText }
 from "@testing-library/react";
 
 import Application from "components/Application";
@@ -216,5 +215,3 @@ describe("Application", () => {
     expect(getByText(appointment, "Error")).toBeInTheDocument();
   });
 });
-
-//why test is not working /
