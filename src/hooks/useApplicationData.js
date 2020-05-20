@@ -82,7 +82,7 @@ export default function useApplicationData() {
   }
 
   function updateSpots(appointmentId, addOrRemoveSpots) {
-    const days = [... state.days];
+    const days = [...state.days];
 
     for (let day of days) {
       if(day.appointments.includes(appointmentId)) {
